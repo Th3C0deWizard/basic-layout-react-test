@@ -14,11 +14,12 @@
 }
 
 .main .main__products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   width: 69%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 69%;
-  background: var(--main-color);
-  border-radius: 10px;
+  overflow: hidden;
 }
