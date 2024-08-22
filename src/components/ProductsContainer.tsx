@@ -53,15 +53,17 @@ export default function ProductsContainer() {
     },
   ];
 
-  <section className="main__products">
-    {games.map((game, index) => (
-      <GameCard
-        key={index}
-        title={game.title}
-        price={game.price}
-        image={game.image}
-        category={game.category}
-      />
-    ))}
-  </section>;
+  return (
+    <section className="main__products">
+      {games.map((game, index) => (
+        <GameCard
+          key={index}
+          title={game.title}
+          price={game.price}
+          image={game.image}
+          category={game.category}
+        />
+      ))}
+    </section>
+  );
 }
