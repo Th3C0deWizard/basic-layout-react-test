@@ -12,13 +12,3 @@
   background: var(--main-color);
   border-radius: 10px;
 }
-
-.main .main__products {
-  width: 69%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 69%;
-  background: var(--main-color);
-  border-radius: 10px;
-}
