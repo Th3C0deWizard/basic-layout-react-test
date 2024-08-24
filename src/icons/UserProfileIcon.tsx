@@ -1,17 +1,26 @@
-type UserProfileIconProps = {
-	width: string | number | undefined
-	height: string | number | undefined
-	fill: string
-}
+import IconProps from "./IconProps";
 
-export default function UserProfileIcon(props: UserProfileIconProps) {
-	return (
-		<svg width={props.width} height={props.height} viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.528" transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)">
-			<g id="SVGRepo_bgCarrier" stroke-width="0" />
-			<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-			<g id="SVGRepo_iconCarrier" >
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 7.063C16.5 10.258 14.57 13 12 13c-2.572 0-4.5-2.742-4.5-5.938C7.5 3.868 9.16 2 12 2s4.5 1.867 4.5 5.063zM4.102 20.142C4.487 20.6 6.145 22 12 22c5.855 0 7.512-1.4 7.898-1.857a.416.416 0 0 0 .09-.317C19.9 18.944 19.106 15 12 15s-7.9 3.944-7.989 4.826a.416.416 0 0 0 .091.317z" fill={props.fill} />
-			</g>
-		</svg >
-	)
+export default function UserProfileIcon(props: IconProps) {
+  return (
+    <svg
+      width={props.width}
+      height={props.height}
+      viewBox="0 0 24 24"
+      fill={props.fill}
+    >
+      <path
+        opacity="0.4"
+        d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01C22 6.48716 17.5228 2.01001 12 2.01001C6.47715 2.01001 2 6.48716 2 12.01C2 17.5329 6.47715 22.01 12 22.01Z"
+        fill={props.fill}
+      />
+      <path
+        d="M12 6.93994C9.93 6.93994 8.25 8.61994 8.25 10.6899C8.25 12.7199 9.84 14.3699 11.95 14.4299C11.98 14.4299 12.02 14.4299 12.04 14.4299C12.06 14.4299 12.09 14.4299 12.11 14.4299C12.12 14.4299 12.13 14.4299 12.13 14.4299C14.15 14.3599 15.74 12.7199 15.75 10.6899C15.75 8.61994 14.07 6.93994 12 6.93994Z"
+        fill={props.fill}
+      />
+      <path
+        d="M18.7807 19.36C17.0007 21 14.6207 22.01 12.0007 22.01C9.3807 22.01 7.0007 21 5.2207 19.36C5.4607 18.45 6.1107 17.62 7.0607 16.98C9.7907 15.16 14.2307 15.16 16.9407 16.98C17.9007 17.62 18.5407 18.45 18.7807 19.36Z"
+        fill={props.fill}
+      />
+    </svg>
+  );
 }

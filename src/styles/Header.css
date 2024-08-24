@@ -1,8 +1,8 @@
 .header {
   background: var(--main-color);
-  border-radius: 10px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   min-height: 50px;
-  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,15 +22,24 @@
   font-size: 2rem;
 }
 
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .navbar ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none
 }
 
 .nav-link a {
   font-size: 1.2rem;
   font-weight: bold;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
 }

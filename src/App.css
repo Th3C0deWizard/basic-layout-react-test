@@ -38,7 +38,5 @@ html {
 .header,
 .main,
 .footer {
-  width: 100%;
-  margin: 0;
-  margin-block: 10px;
+  margin-bottom: 10px;
 }
