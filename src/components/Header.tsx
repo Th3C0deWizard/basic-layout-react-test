@@ -48,9 +48,6 @@ export default function Header() {
             </li>
           ))}
         </ul>
-        <ul>
-          <li></li>
-        </ul>
       </nav>
     </header>
   );
