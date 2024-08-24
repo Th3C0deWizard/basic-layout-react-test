@@ -4,6 +4,33 @@
   min-height: 50px;
   margin-top: 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  color: var(--gray-opaque);
+}
+
+.header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo {
+  font-weight: bolder;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.navbar ul {
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  list-style: none
+}
+
+.nav-link a {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
