@@ -5,6 +5,7 @@ interface GameCardProps {
   price: number;
   image: string;
   category: string;
+  productAdded: (name: string) => void;
 }
 
 type Product = {
@@ -24,6 +25,7 @@ export default function GameCard(props: GameCardProps) {
     else cart.push({ name, price, image, amount: 1 });
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    props.productAdded(name);
   };
 
   return (
