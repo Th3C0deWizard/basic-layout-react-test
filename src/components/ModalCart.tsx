@@ -10,6 +10,7 @@ import MinusIcon from "../icons/MinusIcon";
 import PlusIcon from "../icons/PlusIcon";
 import TrashIcon from "../icons/TrashIcon";
 import "../styles/ModalCart.css";
+import { useState, useEffect } from "react";
 
 type ModalCartProps = {
   show: boolean;
@@ -17,18 +18,57 @@ type ModalCartProps = {
 };
 
 export default function ModalCart({ show, close }: ModalCartProps) {
-  const products = JSON.parse(localStorage.getItem("cart") || "[]");
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart") || "[]")
+  );
 
-  let totalAmount = 0;
-  let total = 0;
-  products.forEach((product: Product) => {
-    totalAmount += product.amount;
-    total += product.amount * product.price;
-  });
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const updateTotal = () => {
+    let totalAmount = 0;
+    let total = 0;
+    cart.forEach((product: Product) => {
+      totalAmount += product.amount;
+      total += product.amount * product.price;
+    });
+    setTotalAmount(totalAmount);
+    setTotal(total);
+  };
+
+  useEffect(() => {
+    const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCart(updatedCart);
+    updateTotal();
+  }, [show]);
 
   const buyProducts = () => {
     localStorage.setItem("cart", "[]");
     alert("Thanks for your purchase");
+  };
+
+  const addPr = (index: number) => {
+    console.log(cart[index].amount);
+    cart[index].amount++;
+    updateProducts();
+  };
+
+  const subtractPr = (index: number) => {
+    if (cart[index].amount > 1) {
+      cart[index].amount--;
+    }
+    updateProducts();
+  };
+
+  const deletePr = (index: number) => {
+    cart.splice(index, 1);
+    updateProducts();
+  };
+
+  const updateProducts = () => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setCart(cart);
+    updateTotal();
   };
 
   return (
@@ -44,7 +84,7 @@ export default function ModalCart({ show, close }: ModalCartProps) {
             />
             <h2>Products</h2>
             <hr />
-            {products.length === 0 ? (
+            {cart.length === 0 ? (
               <div className="empty-list">
                 <h1>Products list 📋</h1>
               </div>
@@ -52,22 +92,37 @@ export default function ModalCart({ show, close }: ModalCartProps) {
               <table>
                 <tbody>
                   {/* Iterar sobre los productos */}
-                  {products.map((product: Product, index: number) => (
+                  {cart.map((product: Product, index: number) => (
                     <tr key={index}>
                       <td>
                         <img src={product.image} alt="Product" width="130" />
                       </td>
                       <td>{product.name}</td>
                       <td className="amount">
-                        <MinusIcon width={24} height={24} className="" />
+                        <MinusIcon
+                          width={24}
+                          height={24}
+                          className=""
+                          onClick={() => subtractPr(index)}
+                        />
                         <span> {product.amount} </span>
-                        <PlusIcon width={24} height={24} className="" />
+                        <PlusIcon
+                          width={24}
+                          height={24}
+                          className=""
+                          onClick={() => addPr(index)}
+                        />
                       </td>
                       <td>$ {product.price}</td>
 
                       <td>
                         {" "}
-                        <TrashIcon width={24} height={24} className="trash" />
+                        <TrashIcon
+                          width={24}
+                          height={24}
+                          className="trash"
+                          onClick={() => deletePr(index)}
+                        />
                       </td>
                     </tr>
                   ))}

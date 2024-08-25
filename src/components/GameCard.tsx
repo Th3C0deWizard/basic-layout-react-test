@@ -7,7 +7,25 @@ interface GameCardProps {
   category: string;
 }
 
+type Product = {
+  name: string;
+  price: number;
+  amount: number;
+  image: string;
+};
+
 export default function GameCard(props: GameCardProps) {
+  const addToCart = (name: string, price: number, image: string) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const product = cart.find((product: Product) => product.name === name);
+
+    if (product) product.amount += 1;
+    else cart.push({ name, price, image, amount: 1 });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
   return (
     <article className="game__item" data-category={props.category}>
       <img src={props.image} alt={props.title} />
@@ -24,16 +42,11 @@ export default function GameCard(props: GameCardProps) {
           <p>${props.price}</p>
         </div>
         <div className="offer__buttons">
-          <a href="">Order Now</a>
-          <a href="">
-            <i className="fa-solid fa-magnifying-glass fa-xs"></i>
-          </a>
-          <a href="">
-            <i className="fa-regular fa-heart fa-xs"></i>
-          </a>
-          <a href="">
-            <i className="fa-solid fa-arrow-right-arrow-left fa-xs"></i>
-          </a>
+          <button
+            onClick={() => addToCart(props.title, props.price, props.image)}
+          >
+            Add to cart <i className="fa-solid fa-cart-plus"></i>
+          </button>
         </div>
       </div>
     </article>

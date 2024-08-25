@@ -2,6 +2,7 @@ type IconProps = {
   width: string | number | undefined;
   height: string | number | undefined;
   className: string | undefined;
+  onClick?: () => void;
 };
 
 export default function MinusIcon(props: IconProps) {
@@ -17,6 +18,7 @@ export default function MinusIcon(props: IconProps) {
       stroke-linecap="round"
       stroke-linejoin="round"
       className={`icon icon-tabler icons-tabler-outline icon-tabler-minus ${props.className}`}
+      onClick={props.onClick}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M5 12l14 0" />
