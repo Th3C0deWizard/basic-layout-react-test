@@ -38,6 +38,5 @@ html {
 .header,
 .main,
 .footer {
-  margin: 0;
-  margin-block: 10px;
+  margin-bottom: 10px;
 }
