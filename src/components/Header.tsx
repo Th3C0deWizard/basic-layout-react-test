@@ -11,7 +11,7 @@ type NavLink = Partial<{
   label: ReactNode;
   href: string;
 }>;
-  
+
 type HeaderProps = {
   openModal: () => void;
 };
@@ -33,8 +33,14 @@ export default function Header(props: HeaderProps) {
       href: "#myprofile",
     },
     {
-      icon: <ShoppingIcon width="30px" height="30px" className="" onClick={props.openModal}/>,
-      href: "",
+      icon: (
+        <ShoppingIcon
+          width="30px"
+          height="30px"
+          className=""
+          onClick={props.openModal}
+        />
+      ),
     },
   ];
 
