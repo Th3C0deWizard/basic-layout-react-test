@@ -10,14 +10,15 @@ import MinusIcon from "../icons/MinusIcon";
 import PlusIcon from "../icons/PlusIcon";
 import TrashIcon from "../icons/TrashIcon";
 import "../styles/ModalCart.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 type ModalCartProps = {
   show: boolean;
   close: () => void;
+  buy: () => void;
 };
 
-export default function ModalCart({ show, close }: ModalCartProps) {
+export default function ModalCart({ show, close, buy }: ModalCartProps) {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart") || "[]")
   );
@@ -25,7 +26,7 @@ export default function ModalCart({ show, close }: ModalCartProps) {
   const [totalAmount, setTotalAmount] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const updateTotal = () => {
+  const updateTotal = useCallback(() => {
     let totalAmount = 0;
     let total = 0;
     cart.forEach((product: Product) => {
@@ -34,17 +35,18 @@ export default function ModalCart({ show, close }: ModalCartProps) {
     });
     setTotalAmount(totalAmount);
     setTotal(total);
-  };
+  }, [cart, setTotalAmount, setTotal]);
 
   useEffect(() => {
     const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(updatedCart);
     updateTotal();
-  }, [show]);
+  }, [show, updateTotal]);
 
   const buyProducts = () => {
     localStorage.setItem("cart", "[]");
-    alert("Thanks for your purchase");
+    buy();
+    close();
   };
 
   const addPr = (index: number) => {
