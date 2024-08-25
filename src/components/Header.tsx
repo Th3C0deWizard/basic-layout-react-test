@@ -4,14 +4,19 @@ import GamesIcon from "../icons/GamesIcon";
 import FriendsIcon from "../icons/FriendsIcon";
 import type { ReactNode } from "react";
 import HomeIcon from "../icons/HomeIcon";
+import ShoppingIcon from "../icons/ShoppingIcon";
 
 type NavLink = Partial<{
   icon: ReactNode;
   label: ReactNode;
   href: string;
 }>;
+  
+type HeaderProps = {
+  openModal: () => void;
+};
 
-export default function Header() {
+export default function Header(props: HeaderProps) {
   const navLinks: Array<NavLink> = [
     {
       icon: <GamesIcon width="30px" height="30px" fill="#fff" />,
@@ -26,6 +31,10 @@ export default function Header() {
     {
       icon: <UserProfileIcon fill="#fff" width="40px" height="40px" />,
       href: "#myprofile",
+    },
+    {
+      icon: <ShoppingIcon width="30px" height="30px" className="" onClick={props.openModal}/>,
+      href: "",
     },
   ];
 

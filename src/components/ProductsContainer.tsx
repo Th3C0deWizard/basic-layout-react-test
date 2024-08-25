@@ -1,7 +1,13 @@
 import GameCard from "./GameCard";
 import "../styles/ProductsContainer.css";
 
-export default function ProductsContainer() {
+type ProductsContainerProps = {
+  productAdded: (name: string) => void;
+};
+
+export default function ProductsContainer({
+  productAdded,
+}: ProductsContainerProps) {
   const games = [
     {
       title: "Minecraft",
@@ -62,6 +68,7 @@ export default function ProductsContainer() {
           price={game.price}
           image={game.image}
           category={game.category}
+          productAdded={productAdded}
         />
       ))}
     </section>

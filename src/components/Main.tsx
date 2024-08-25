@@ -1,11 +1,15 @@
 import "../styles/Main.css";
 import ProductsContainer from "./ProductsContainer";
 
-export default function Main() {
+type MainProps = {
+  productAdded: (name: string) => void;
+};
+
+export default function Main({ productAdded }: MainProps) {
   return (
     <main className="main">
       <aside className="main__aside">Contenido lateral</aside>
-      <ProductsContainer />
+      <ProductsContainer productAdded={productAdded} />
     </main>
   );
 }
