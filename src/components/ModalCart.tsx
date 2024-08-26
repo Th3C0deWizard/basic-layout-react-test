@@ -20,7 +20,7 @@ type ModalCartProps = {
 
 export default function ModalCart({ show, close, buy }: ModalCartProps) {
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart") || "[]")
+    JSON.parse(localStorage.getItem("cart") || "[]"),
   );
 
   const [totalAmount, setTotalAmount] = useState(0);
@@ -41,7 +41,7 @@ export default function ModalCart({ show, close, buy }: ModalCartProps) {
     const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(updatedCart);
     updateTotal();
-  }, [show, updateTotal]);
+  }, [show]);
 
   const buyProducts = () => {
     localStorage.setItem("cart", "[]");

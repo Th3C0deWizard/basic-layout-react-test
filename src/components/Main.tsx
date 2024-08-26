@@ -1,5 +1,6 @@
 import "../styles/Main.css";
 import ProductsContainer from "./ProductsContainer";
+import Aside from "./Aside";
 
 type MainProps = {
   productAdded: (name: string) => void;
@@ -8,7 +9,7 @@ type MainProps = {
 export default function Main({ productAdded }: MainProps) {
   return (
     <main className="main">
-      <aside className="main__aside">Contenido lateral</aside>
+      <Aside />
       <ProductsContainer productAdded={productAdded} />
     </main>
   );
