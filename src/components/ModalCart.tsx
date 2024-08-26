@@ -10,7 +10,7 @@ import MinusIcon from "../icons/MinusIcon";
 import PlusIcon from "../icons/PlusIcon";
 import TrashIcon from "../icons/TrashIcon";
 import "../styles/ModalCart.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 
 type ModalCartProps = {
   show: boolean;
@@ -20,28 +20,28 @@ type ModalCartProps = {
 
 export default function ModalCart({ show, close, buy }: ModalCartProps) {
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart") || "[]")
+    JSON.parse(localStorage.getItem("cart") || "[]"),
   );
 
   const [totalAmount, setTotalAmount] = useState(0);
   const [total, setTotal] = useState(0);
 
-  const updateTotal = useCallback(() => {
+  const updateTotal = (updatedCart: Array<Product>) => {
     let totalAmount = 0;
     let total = 0;
-    cart.forEach((product: Product) => {
+    updatedCart.forEach((product: Product) => {
       totalAmount += product.amount;
       total += product.amount * product.price;
     });
     setTotalAmount(totalAmount);
     setTotal(total);
-  }, [cart, setTotalAmount, setTotal]);
+  };
 
   useEffect(() => {
     const updatedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    updateTotal(updatedCart);
     setCart(updatedCart);
-    updateTotal();
-  }, [show, updateTotal]);
+  }, [show]);
 
   const buyProducts = () => {
     localStorage.setItem("cart", "[]");
@@ -50,27 +50,32 @@ export default function ModalCart({ show, close, buy }: ModalCartProps) {
   };
 
   const addPr = (index: number) => {
+    const updatedCart = [...cart];
     console.log(cart[index].amount);
-    cart[index].amount++;
-    updateProducts();
+    updatedCart[index].amount++;
+    updateProducts(updatedCart);
+    setCart(updatedCart);
   };
 
   const subtractPr = (index: number) => {
+    const updatedCart = [...cart];
     if (cart[index].amount > 1) {
-      cart[index].amount--;
+      updatedCart[index].amount--;
+      updateProducts(updatedCart);
+      setCart(updatedCart);
     }
-    updateProducts();
   };
 
   const deletePr = (index: number) => {
-    cart.splice(index, 1);
-    updateProducts();
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    updateProducts(updatedCart);
+    setCart(updatedCart);
   };
 
-  const updateProducts = () => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-    setCart(cart);
-    updateTotal();
+  const updateProducts = (updatedCart: Array<Product>) => {
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateTotal(updatedCart);
   };
 
   return (

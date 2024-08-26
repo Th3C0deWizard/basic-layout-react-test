@@ -1,14 +1,18 @@
 import "../styles/GameCard.css";
 
-interface GameCardProps {
+export type Game = {
   title: string;
   price: number;
   image: string;
   category: string;
+};
+
+interface GameCardProps {
+  game: Game;
   productAdded: (name: string) => void;
 }
 
-type Product = {
+export type Product = {
   name: string;
   price: number;
   amount: number;
@@ -29,8 +33,8 @@ export default function GameCard(props: GameCardProps) {
   };
 
   return (
-    <article className="game__item" data-category={props.category}>
-      <img src={props.image} alt={props.title} />
+    <article className="game__item" data-category={props.game.category}>
+      <img src={props.game.image} alt={props.game.title} />
       <div className="game__container">
         <div className="rating">
           <i className="fa-solid fa-star fa-lg"></i>
@@ -40,12 +44,14 @@ export default function GameCard(props: GameCardProps) {
           <i className="fa-solid fa-star fa-lg"></i>
         </div>
         <div className="game__info">
-          <h5>{props.title}</h5>
-          <p>${props.price}</p>
+          <h5>{props.game.title}</h5>
+          <p>${props.game.price}</p>
         </div>
         <div className="offer__buttons">
           <button
-            onClick={() => addToCart(props.title, props.price, props.image)}
+            onClick={() =>
+              addToCart(props.game.title, props.game.price, props.game.image)
+            }
           >
             Add to cart <i className="fa-solid fa-cart-plus"></i>
           </button>
