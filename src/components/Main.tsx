@@ -107,9 +107,7 @@ export default function Main({ productAdded }: MainProps) {
       (search.value.trim() === "" && !search?.filters)
     ) {
       setGames(allGames);
-      alert("TRUE");
     } else {
-      alert("FALSE");
       const filteredGames = allGames.filter(
         (game) =>
           (!search.filters ||

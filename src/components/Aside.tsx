@@ -64,8 +64,6 @@ export default function Aside(props: AsideProps) {
     getFilterValues("playerSupport", playerSupport, formElements, search);
     getFilterValues("platforms", platforms, formElements, search);
 
-    alert(JSON.stringify(search, null, 2));
-
     props.onSearch(search);
   };
 

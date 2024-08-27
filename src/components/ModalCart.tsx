@@ -10,7 +10,7 @@ import MinusIcon from "../icons/MinusIcon";
 import PlusIcon from "../icons/PlusIcon";
 import TrashIcon from "../icons/TrashIcon";
 import "../styles/ModalCart.css";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 type ModalCartProps = {
   show: boolean;
@@ -51,7 +51,6 @@ export default function ModalCart({ show, close, buy }: ModalCartProps) {
 
   const addPr = (index: number) => {
     const updatedCart = [...cart];
-    console.log(cart[index].amount);
     updatedCart[index].amount++;
     updateProducts(updatedCart);
     setCart(updatedCart);
