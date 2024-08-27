@@ -78,7 +78,7 @@ export default function Aside(props: AsideProps) {
         <div className="searchbar">
           <input type="text" name="search" />
           <button>
-            <SearchIcon width="30px" height="30px" fill="#000" />
+            <SearchIcon width="20px" height="20px" fill="#000" />
           </button>
         </div>
         <button className="reset-btn" type="reset">
