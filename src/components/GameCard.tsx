@@ -5,6 +5,9 @@ export type Game = {
   price: number;
   image: string;
   category: string;
+  genres: Array<string | never>;
+  playerSupport: Array<string | never>;
+  platforms: Array<string | never>;
 };
 
 interface GameCardProps {
